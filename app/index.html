@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Backyard Workshop | My Backyard Projects</title>
+<meta name="description" content="The bonus app for My Backyard Projects: smart calculators and practical guides to build safely, with zero waste and a magazine-quality finish." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--primary:#b25e16;--secondary:#2d5a27;--dark:#22160d;--bg:#faf7f0;--surface:#fff;--alert:#d93838;--line:#ece4d4;--shadow:0 4px 12px #22160d12}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--dark);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3,.heading{font-family:Outfit,Inter,sans-serif;margin:0}
+header.top{background:var(--secondary);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20}
+header.top .logo{font-family:Outfit;font-weight:800;font-size:20px;cursor:pointer}
+header.top small{color:#f2c27a;font-weight:500}
+main{max-width:1080px;margin:0 auto;padding:24px 16px 60px}
+.card{background:var(--surface);border-radius:16px;box-shadow:var(--shadow);padding:22px}
+.hello{border-left:5px solid var(--primary);margin-bottom:24px}
+.hello h2{font-size:26px;margin-bottom:6px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.mod{cursor:pointer;display:flex;flex-direction:column;border:1px solid transparent;transition:.2s}
+.mod:hover{border-color:#b25e1633;transform:translateY(-2px)}
+.ico{width:52px;height:52px;border-radius:12px;background:#b25e1617;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:12px}
+.tag{display:inline-block;background:#f1efe9;color:#6b6258;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;text-transform:uppercase;letter-spacing:.05em}
+.mod h3{font-size:20px;margin:8px 0 6px}.mod p{margin:0 0 14px;color:#5c5349;font-size:14px;flex:1}
+.go{color:var(--primary);font-weight:600;font-size:14px}
+.back{background:none;border:0;color:#6b6258;font-weight:500;cursor:pointer;margin-bottom:14px;font-size:14px;padding:0}.back:hover{color:var(--primary)}
+.two{display:grid;gap:26px;grid-template-columns:1fr 1fr}@media(max-width:860px){.two{grid-template-columns:1fr}}
+.box{background:#faf8f3;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.box h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.num{background:var(--primary);color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+label.l{display:block;font-size:12px;color:#7a7066;margin-bottom:3px}
+input,select{width:100%;border:1px solid #dfd6c4;border-radius:8px;padding:9px 10px;font:inherit;font-size:14px;background:#fff}
+input:focus,select:focus{outline:2px solid var(--primary);border-color:transparent}
+.row{display:grid;gap:10px}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:2fr 1fr 1fr 1fr}.c2{grid-template-columns:1fr 1fr}
+.btn{background:var(--primary);color:#fff;border:0;border-radius:8px;padding:10px 14px;font-weight:600;cursor:pointer;font-size:14px}.btn:hover{opacity:.9}
+.btn.ghost{background:#fff;color:var(--primary);border:1px solid #dfd6c4}
+.parts{max-height:210px;overflow:auto;margin-top:10px}
+.part{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:6px;font-size:14px}
+.part button{border:0;background:none;color:#d96b6b;cursor:pointer;font-size:16px}
+.alert{border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:14px}.alert.red{background:#fdecec;border:1px solid #f3c3c3;color:#8a2121}.alert.orange{background:#fff3e3;border:1px solid #f5d3a3;color:#8a4b0b}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#faf8f3;border:1px solid var(--line);border-radius:12px 12px 0 0;padding:12px}
+.stats small{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#7a7066}.stats b{font-family:Outfit;font-size:22px}
+.svgwrap{border:1px solid var(--line);border-top:0;padding:12px;background:#fff}
+.cap{background:#faf8f3;border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;padding:8px 12px;font-size:12px;color:#7a7066;text-align:center}
+ol.steps{padding-left:20px;margin:0}ol.steps li{margin-bottom:8px;font-size:14px}
+.sheetpick{margin-top:10px;font-size:13px}
+.shop{display:grid;gap:8px}.shop div{display:flex;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px}.shop b{color:var(--secondary)}
+.guide h2{font-size:28px;margin-bottom:8px}.guide .intro{color:#5c5349;margin-bottom:22px}
+.stepitem{display:flex;gap:12px;margin-bottom:12px;font-size:15px}.stepitem .num{flex:none;margin-top:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:#fff;font-size:14px}
+.chk.done{background:#eef6ec;border-color:#bfe0b8;color:#38642f}.chk input{width:18px;height:18px;margin-top:1px;accent-color:var(--secondary);flex:none}
+.bar{height:8px;background:#eee7d8;border-radius:99px;overflow:hidden;margin:6px 0 16px}.bar i{display:block;height:100%;background:var(--secondary);transition:.3s}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.pill{border:1px solid #dfd6c4;background:#fff;color:#5c5349;border-radius:99px;padding:7px 14px;font-size:14px;font-weight:500;cursor:pointer}.pill.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.acc{display:flex;flex-direction:column}.acc .top{display:flex;justify-content:space-between;margin-bottom:12px;gap:6px}
+.diff{font-size:10px;font-weight:700;border-radius:5px;padding:3px 8px;text-transform:uppercase;letter-spacing:.05em}.easy{background:#dff3dc;color:#2e6b24}.med{background:#fbf0c8;color:#8a6a0b}
+.acc h3{font-size:18px;margin-bottom:6px}.acc p{margin:0 0 16px;color:#5c5349;font-size:14px;flex:1}
+.modal{position:fixed;inset:0;background:#0008;z-index:50;display:none;align-items:center;justify-content:center;padding:16px}.modal.open{display:flex}
+.sheet{background:#fff;border-radius:16px;max-width:660px;width:100%;max-height:90vh;overflow:auto}
+.sheet header{background:#faf8f3;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.sheet .in{padding:18px}.sheet h4{font-family:Outfit;margin:16px 0 8px;font-size:15px;color:var(--secondary)}.sheet ul{margin:0;padding-left:18px;font-size:14px}.sheet li{margin-bottom:4px}
+.x{border:0;background:none;font-size:22px;cursor:pointer;color:#6b6258}
+.note{font-size:12px;color:#7a7066;margin-top:14px}
+</style>
+</head>
+<body>
+<header class="top"><span class="logo" onclick="go(null)">🛠️ Backyard Workshop</span><small>bonus app · My Backyard Projects</small></header>
+<main id="app"></main>
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+
+<script>
+/* ============================================================
+   CONTENT
+   ============================================================ */
+const MODULES = [
+  { id: 1, icon: '📐', tag: 'Interactive tool', title: 'Zero-Waste Cutting Calculator', desc: 'Optimize cuts from plywood sheets and boards without wasting money.' },
+  { id: 2, icon: '⛰️', tag: 'Interactive tool', title: 'Uneven Ground Calculator', desc: 'Level the base with blocks and gravel on any slope.' },
+  { id: 3, icon: '💧', tag: 'Technical guide + checklist', title: 'Weather Shield', desc: 'Treatment and waterproofing against sun, rain and termites.' },
+  { id: 4, icon: '🛡️', tag: 'Technical guide + checklist', title: 'Kid-Friendly Finish', desc: 'Hidden screws, smooth corners and complete safety.' },
+  { id: 5, icon: '🔨', tag: 'Technical guide + checklist', title: 'Simple Workshop', desc: 'Straight cuts and assembly with basic tools.' },
+  { id: 6, icon: '✨', tag: 'Gallery of 20 add-ons', title: 'Backyard Add-Ons', desc: 'A catalog of wooden add-ons to expand the playhouse.' },
+];
+
+const GUIDES = {
+  3: { title: 'Weather Shield', intro: "Hey there, friend! Wood outdoors needs some love. If we don't protect it, the sun scorches it, rain swells it and termites throw a party. Follow these steps and the playhouse will last for generations. No rush: the secret is in the care.",
+    steps: ['Dry the wood completely, then sand with 120-grit sandpaper.', 'Apply a clear termite/borate treatment on every face, corner and hole.', 'Apply penetrating stain in 2 or 3 coats (never use regular varnish outdoors: it peels).', 'Carefully seal the end grain and the bottoms of the boards, where water tries to get in.', 'Maintenance calendar: do a light touch-up every 2 years.'],
+    checklist: ['Check that the wood is dry and clean', 'Sand (120-grit) with the grain', 'Apply 1 coat of termite treatment', 'Wait 24 hours to dry', 'Apply the 1st coat of penetrating stain', 'Very light sanding (240-grit) between coats', 'Apply the 2nd coat of stain', 'Seal the ends of vertical boards extra well'] },
+  4: { title: 'Kid-Friendly Finish', intro: "Safety first, always! Kids run, bump and play without looking. Our mission is to make sure there is no loose point, sharp corner or place to pinch little fingers. Go through this list carefully.",
+    steps: ['Hidden screws: use a 15° pocket-hole jig to hide the screw heads.', 'Round over all sharp corners and edges (radius of at least 1/8″, with a router or sander).', 'Leave a 5/8″ gap at door hinges and stops to prevent finger crushing.', 'Always use 1/8″ acrylic instead of glass in windows.', 'Structural bracing with corner brackets, protecting against strong winds.'],
+    checklist: ['Drill the hidden pocket holes in the framing', 'Check that screw heads are 100% countersunk', 'Sand all edges and corners (doors, windows, furniture)', 'Set the 5/8″ gap at the door stop', 'Install 1/8″ acrylic in the windows (no glass!)', 'Remove splinters and debris from inside the playhouse', 'Fasten the bracing corner brackets at the base'] },
+  5: { title: 'Simple Workshop', intro: "You don't need a fancy woodshop to do magazine-quality work! With a handful of basic tools, a makeshift workbench and attention to square, you can work wonders. Here are Walt's tips:",
+    steps: ['Set up a level makeshift workbench using two sawhorses and a sacrificial sheet.', 'Make a straight-cut guide by clamping an aluminum ruler or a straight board.', 'Check for square: use the old 3-4-5 rule to guarantee perfect 90° angles.', "Set the drill/driver's clutch (torque): avoid driving through the wood or stripping the screw."],
+    checklist: ['Set up a level workbench', 'Test the guide on a scrap piece before the real cut', 'Check the platform for square with the 3-4-5 rule', 'Adjust the circular-saw blade depth', "Set the drill/driver's clutch for the wood being used", 'Wear safety glasses and hearing protection'] },
+};
+
+const ACC = [
+ { id:'a1', name:'Mini Deck Porch', cat:'Entrance & Connection', diff:'Medium', desc:'A charming front deck to expand the play area.', mat:['Leftover deck boards (min. 20″)','Leftover 2×4s for the base','Deck screws'], steps:['Build a base frame from the 2×4s (level)','Screw down the deck boards leaving a 1/8″ gap between them','Sand the front edges well and apply stain'], chk:['Anchor the base against tipping','Add non-slip grooves (or sand rough)','Check that gaps are no more than 1/8″ (prevents pinched fingers)'] },
+ { id:'a2', name:'Gentle Climbing Ramp', cat:'Entrance & Connection', diff:'Easy', desc:'An accessible, safe ramp as an alternative to steps.', mat:['Half sheet of marine plywood','Thin traction slats','Heavy-duty hinges'], steps:['Cut the plywood at the ideal slope (max 15 degrees)','Glue and nail cross slats every 4″','Attach to the playhouse base with heavy hinges'], chk:['Check the traction slats are fastened (no exposed nails)','Test the slope to prevent slipping','Anchor the ramp base to the ground'] },
+ { id:'a3', name:'Safety Step Ladder', cat:'Entrance & Connection', diff:'Medium', desc:'A 2- or 3-step stair with a height sized for kids.', mat:['Leftover 2×4s','Leftover wide boards','#10 × 2″ screws'], steps:['Cut the stringers (sides) at an angle','Fasten horizontal cleats to the stringers for the steps','Screw the steps down from the top'], chk:['Maximum step height: 6″ (kid ergonomics)','Rounded step edges','Double fastening on each side of the step'] },
+ { id:'a4', name:'Walkway Bridge', cat:'Entrance & Connection', diff:'Medium', desc:'A suspended or rigid walkway linking the playhouse to a spot outside.', mat:['Long leftover beams','Heavy nylon or sisal rope','Short boards'], steps:['Build the base with the two long beams in parallel','Screw the short boards on perpendicular','Use the rope to make a playful railing'], chk:['Proper tension on the rope railing','Sturdy anchoring at both ends of the bridge','Check that ropes do not form dangerous loops'] },
+ { id:'a5', name:'Colonial Mini Fence', cat:'Entrance & Connection', diff:'Easy', desc:'A mini wooden fence marking out the playhouse yard.', mat:['Thin slats (roof leftovers)','Tie-in rail strips','Finish nails'], steps:['Cut all the pickets the same size with a rounded top','Fasten two horizontal rail lines','Nail on the pickets evenly spaced'], chk:['Picket tops perfectly rounded (no points)','Gap between pickets under 3-1/2″ (prevents head entrapment)','Set the base posts firmly in the ground'] },
+ { id:'a6', name:'Little Gate', cat:'Entrance & Connection', diff:'Medium', desc:'A swinging gate with a safe latch.', mat:['Z-brace frame from slats','Thin boards','Surface-mount latch','Hinges'], steps:['Build the Z-frame so the gate does not sag','Cover the frame with the boards','Install the hinges and the latch from the outside'], chk:['Latch high enough, or a child-safe model','5/8″ gap at the latch (anti-crush)','Z-brace installed in the correct direction for gravity'] },
+ { id:'a7', name:'Friendly Shade Awning', cat:'Window / Roof / Walls', diff:'Easy', desc:'A wood and fabric structure to shade the front window.', mat:['Old broomsticks','Waterproof canvas fabric','Upholstery staples'], steps:['Make a simple L-frame fixed above the window','Staple the canvas to the wooden frame','Paint the wood to match the playhouse details'], chk:['Ensure a slope for water runoff','Check for exposed staple points','Firm fastening above head height (prevents bumps)'] },
+ { id:'a8', name:'Gourmet Window Counter', cat:'Window / Roof / Walls', diff:'Easy', desc:'An outdoor window counter for "selling food" play.', mat:['1 wide board (12″+)','2 triangular wood brackets from leftovers'], steps:['Cut the brackets into a reinforced triangle','Fasten the brackets right below the window','Screw the wide board on top, sanding the edge well'], chk:['Front edge extremely rounded','Test weight on the counter (fastened into a structural stud)','Countersunk, covered screws'] },
+ { id:'a9', name:'Classic Flower Box', cat:'Window / Roof / Walls', diff:'Easy', desc:'A rustic little box for real or toy flowers.', mat:['Pine/cedar board scraps','Black plastic sheeting (liner)'], steps:['Build a narrow rectangular box','Line the inside with plastic if using wet soil','Drill 2 drainage holes in the bottom and mount under the window'], chk:['Drainage holes unclogged (prevents rotting the wall)','Careful sanding of the outer edges','Fasten with long screws reaching the inner structure'] },
+ { id:'a10', name:'Village Chimney', cat:'Window / Roof / Walls', diff:'Medium', desc:'A decorative wooden chimney to place on the roof.', mat:['4 pieces of plywood or board','Small corner brackets','Brick-red paint'], steps:['Cut the 4 sides at an angle at the base to follow the roof pitch','Assemble the square box','Paint it to look like brick and attach to the roof with construction adhesive or screws and silicone'], chk:['Perfect silicone seal at the base (prevents leaks)','Check firmness against strong winds on the roof','No loose pieces at the top of the chimney'] },
+ { id:'a11', name:'Mailbox', cat:'Window / Roof / Walls', diff:'Easy', desc:'A mini mailbox on the side or on the little fence.', mat:['OSB or plywood scraps','1 small hinge','Magnetic catch'], steps:['Build a small box with a sloped little roof','Cut a slot in the front door for "letters"','Install the little door with a hinge to take out the letters'], chk:['Sand the inside of the letter slot (no splinters in hands)','Hinge with no sharp points','Gentle magnetic catch that does not pinch fingers'] },
+ { id:'a12', name:'Climbing Panel', cat:'Window / Roof / Walls', diff:'Medium', desc:'A reinforced side wall with kids\' climbing holds.', mat:['Thick marine plywood sheet (3/4″+)','Resin climbing holds (bought) or well-sanded wood blocks','T-nuts'], steps:['Drill the holes in the sheet and hammer in the T-nuts from behind','Fasten the sheet firmly to the playhouse framing','Screw the holds on from the front'], chk:['Re-tighten all hold bolts every two weeks','Check that the T-nuts are not loosening from behind','Safe maximum height, with grass or rubber mulch in the fall zone'] },
+ { id:'a13', name:'Flagpole', cat:'Window / Roof / Walls', diff:'Easy', desc:'A pole with a little rope for hoisting fun flags.', mat:['Broom handle','2 small pulleys','Thin nylon rope'], steps:['Fasten one pulley at the top of the pole and another at the base of the house','Attach the pole to the playhouse corner','Run the rope through to form a continuous loop'], chk:['Rope under tension, with no long slack on the ground (trip/strangling risk)','Pole firmly fastened against wind','Pulleys fully closed (no risk of the wheel coming loose)'] },
+ { id:'a14', name:'Guardian Storage Bench', cat:'Furniture', diff:'Medium', desc:'An interior bench with an opening seat, perfect for storing toys.', mat:['Plywood sheet or leftover decking','Piano hinge','Soft gas strut or limiter rope'], steps:['Build the bench base box','Install the seat/lid using the piano hinge','Required: install a light gas strut so the lid does not slam shut'], chk:['Anti-crush lock or strut on the lid works perfectly','Ventilation holes in the sides of the box (safety)','3/4″ gap between the lid and the front base for little fingers'] },
+ { id:'a15', name:'Folding Wall Table', cat:'Furniture', diff:'Medium', desc:'A wall table that drops down only when needed.', mat:['1 plywood scrap','Hinges','Latch or limit chain'], steps:['Fasten the panel to the inside wall with the hinges at the bottom','Make two hinged legs or diagonal support cables','Install a catch to hold the table closed against the wall'], chk:['Safety latch out of babies\' reach (when closed)','Firm weight support (test by pushing down by hand)','Rounded edges with no sharp corners'] },
+ { id:'a16', name:'Corner Shelves', cat:'Furniture', diff:'Easy', desc:'A perfect use of the playhouse\'s inside corners.', mat:['Triangular plywood scraps','Slats for side supports'], steps:['Cut the triangles from the scraps','Fasten the horizontal supports (little slats) on the two wall corners','Glue and nail/screw the triangle onto the slats'], chk:['Shelf fastened to the structure (prevents tipping when pulled)','No exposed screws on the underside','Correct level so the toys do not fall'] },
+ { id:'a17', name:'Tool Holder', cat:'Furniture', diff:'Easy', desc:'A panel with pegs to hang toy tools.', mat:['1 flat board or OSB','5/16″ wooden dowel pegs'], steps:['Drill blind holes in the board the same size as the dowel','Glue the dowel pieces in, tilted slightly upward','Fasten the panel to the wall'], chk:['Dowels well glued (they must not come loose and go in a mouth)','Pegs rounded at the tip','Panel sanded, splinter-free'] },
+ { id:'a18', name:'Chalkboard', cat:'Furniture', diff:'Easy', desc:'A blackboard painted right onto a wood cutout.', mat:['Plywood scraps','Green or black chalkboard enamel paint','Thin slat for chalk'], steps:['Sand the sheet perfectly smooth','Apply 3 coats of chalkboard paint with a foam roller','Fasten the little slat at the bottom as a chalk tray'], chk:['Blind fastening to the wall (screws hidden by the slat)','Chalk-tray slat well rounded (no sharp corners)','Paint fully cured before use'] },
+ { id:'a19', name:'Three-Legged Stool', cat:'Furniture', diff:'Medium', desc:'A rustic little stool that does not wobble on uneven ground.', mat:['Short beam piece or scrap of thick plank','3 pieces of broom handle or round slat'], steps:['Cut the round or triangular seat with rounded corners','Drill angled holes in the base (with a spade bit)','Glue the 3 legs with extra wood glue and lock with a little nail'], chk:['Stability test (it must not tip easily)','All 3 legs sanded splinter-free','Seat corners heavily rounded'] },
+ { id:'a20', name:'Picture Frames', cat:'Furniture', diff:'Easy', desc:'Fixed wall frames for family photos or drawings.', mat:['Thin slat/strip scraps','Thin acrylic or acetate','Wood glue'], steps:['Build the frame by gluing the slats with 45° miter cuts','Make a back from a hardboard scrap or thick cardboard','Insert the photo protected by the acetate and fasten it to the playhouse wall'], chk:['MANDATORY use of acrylic/acetate (never glass)','Frame screwed firmly to the wall (not hung on a loose nail)','Flawless sanding of the small edges'] },
+];
+const CATS = ['All', 'Entrance & Connection', 'Window / Roof / Walls', 'Furniture'];
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+};
+// inches <-> fractions (1/16")
+function fmt(v) { let w = Math.floor(v + 1e-9), f = Math.round((v - w) * 16); if (f === 16) { w++; f = 0; } if (!f) return w + '″'; const g = (a, b) => (b ? g(b, a % b) : a), d = g(f, 16); return (w ? w + '-' : '') + f / d + '/' + 16 / d + '″'; }
+// accepts 12, 12.5, 12 1/2, 12-1/2, 1/2
+function parseIn(s) { s = String(s).trim().replace(/["″”]/g, ''); if (!s) return NaN; const m = s.match(/^(\d+(?:\.\d+)?)?[\s-]*(?:(\d+)\/(\d+))?$/); if (!m || (m[1] === undefined && m[2] === undefined)) return NaN; return (m[1] ? parseFloat(m[1]) : 0) + (m[2] ? parseInt(m[2]) / parseInt(m[3]) : 0); }
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+let current = null;
+function go(id) { current = id; render(); window.scrollTo(0, 0); }
+function render() {
+  const app = $('#app');
+  if (current === null) return (app.innerHTML = home());
+  if (current === 1) return (app.innerHTML = '<button class="back" onclick="go(null)">← Back</button>' + cutterShell(), cutterInit());
+  if (current === 2) return (app.innerHTML = '<button class="back" onclick="go(null)">← Back</button>' + groundShell(), groundInit());
+  if (GUIDES[current]) return (app.innerHTML = '<button class="back" onclick="go(null)">← Back</button>' + guide(current), guideInit(current));
+  if (current === 6) return (app.innerHTML = '<button class="back" onclick="go(null)">← Back</button>' + gallery(), galleryInit());
+}
+function home() {
+  return `<div class="card hello"><h2>Hi! I'm Walt.</h2><p style="margin:0;color:#4d443a">Welcome to your bonus app! Here you have smart tools and practical guides to build safely, with zero waste and a magazine-quality finish. Pick a module below and let's get our hands dirty!</p></div>
+  <div class="grid">${MODULES.map((m) => `<div class="card mod" onclick="go(${m.id})"><div class="ico">${m.icon}</div><span class="tag">${m.tag}</span><h3>${m.title}</h3><p>${m.desc}</p><span class="go">Open module →</span></div>`).join('')}</div>
+  <p class="note" style="text-align:center;margin-top:28px">All measurements are in inches and feet, based on standard US lumber (2×4, 4×8 ft plywood).</p>`;
+}
+
+/* ============================================================
+   MODULE 1 — CUTTING CALCULATOR (guillotine packing, inches)
+   ============================================================ */
+const cut = { mode: 'sheet', L: 96, W: 48, kerf: 0.125, parts: store.get('cut-parts', []) };
+function cutterShell() {
+  return `<div class="card"><h2 class="heading" style="font-size:28px;margin-bottom:4px">Zero-Waste Cutting Calculator</h2>
+  <p style="color:#5c5349;margin:0 0 22px">Hey, friend! Let's optimize these cuts so you don't waste an inch of lumber.</p>
+  <div class="two"><div>
+    <div class="box"><h3><span class="num">1</span> Available material</h3>
+      <div style="display:flex;gap:16px;margin-bottom:12px;font-size:14px"><label><input type="radio" name="mt" value="sheet" ${cut.mode === 'sheet' ? 'checked' : ''} style="width:auto"> Sheet (plywood / OSB)</label><label><input type="radio" name="mt" value="board" ${cut.mode === 'board' ? 'checked' : ''} style="width:auto"> Board / 2×4 / 2×6</label></div>
+      <div class="row c3"><div><label class="l">Length (in)</label><input id="cL" value="${cut.L}"></div><div><label class="l">Width (in)</label><input id="cW" value="${cut.W}" ${cut.mode === 'board' ? 'disabled' : ''}></div><div><label class="l">Saw kerf (in)</label><input id="cK" value="${cut.kerf}"></div></div>
+      <div class="sheetpick"><button class="btn ghost" id="p48">4×8 ft sheet</button> <button class="btn ghost" id="p44">4×4 ft sheet</button> <button class="btn ghost" id="pb8">8 ft board</button> <button class="btn ghost" id="pb10">10 ft board</button></div></div>
+    <div class="box"><h3><span class="num">2</span> Parts list</h3>
+      <div class="row c4" style="margin-bottom:10px"><input id="pN" placeholder="Part name"><input id="pL" placeholder='Length″'><input id="pW" placeholder='Width″'><input id="pQ" type="number" min="1" value="1" placeholder="Qty"></div>
+      <button class="btn" id="addP" style="width:100%">+ Add part</button><p class="note" style="margin:8px 0 0">Type sizes like 24, 24.5 or 24 1/2. For boards, width is ignored.</p>
+      <div class="parts" id="parts"></div></div>
+  </div><div id="cOut"></div></div></div>`;
+}
+function pack(parts, L, W, kerf, mode) {
+  // devolve folhas: [{placed:[...], free:[...]}]
+  const items = []; parts.forEach((p) => { for (let i = 0; i < p.qty; i++) items.push({ ...p }); });
+  const sheets = []; const unfit = [];
+  if (mode === 'board') {
+    items.sort((a, b) => b.l - a.l);
+    for (const it of items) {
+      if (it.l > L) { unfit.push(it); continue; }
+      let s = sheets.find((s) => s.used + it.l + (s.placed.length ? kerf : 0) <= L + 1e-9);
+      if (!s) { s = { placed: [], used: 0 }; sheets.push(s); }
+      const x = s.placed.length ? s.used + kerf : 0; s.placed.push({ ...it, x, y: 0, w: it.l, h: W }); s.used = x + it.l;
+    }
+    sheets.forEach((s) => (s.free = L - s.used > 6 ? [{ x: s.used + kerf, y: 0, w: L - s.used - kerf, h: W }] : []));
+    return { sheets, unfit };
+  }
+  items.sort((a, b) => b.l * b.w - a.l * a.w);
+  const mk = () => ({ placed: [], rects: [{ x: 0, y: 0, w: L, h: W }] });
+  for (const it of items) {
+    let done = false;
+    const fits = (r, w, h) => w <= r.w + 1e-9 && h <= r.h + 1e-9;
+    if (!(fits({ w: L, h: W }, it.l, it.w) || fits({ w: L, h: W }, it.w, it.l))) { unfit.push(it); continue; }
+    for (const s of sheets) {
+      let best = null;
+      for (const r of s.rects) for (const rot of [false, true]) { const w = rot ? it.w : it.l, h = rot ? it.l : it.w; if (fits(r, w, h)) { const sc = Math.min(r.w - w, r.h - h); if (!best || sc < best.sc) best = { r, w, h, rot, sc }; } }
+      if (best) { place(s, best, it, kerf); done = true; break; }
+    }
+    if (!done) { const s = mk(); sheets.push(s); const r = s.rects[0]; const rot = !(fits(r, it.l, it.w)); place(s, { r, w: rot ? it.w : it.l, h: rot ? it.l : it.w, rot }, it, kerf); }
+  }
+  sheets.forEach((s) => (s.free = s.rects.filter((r) => r.w >= 8 && r.h >= 8)));
+  return { sheets, unfit };
+}
+function place(s, b, it, kerf) {
+  const { r, w, h, rot } = b; s.placed.push({ ...it, x: r.x, y: r.y, w, h, rot });
+  s.rects.splice(s.rects.indexOf(r), 1);
+  const right = { x: r.x + w + kerf, y: r.y, w: r.w - w - kerf, h }, down = { x: r.x, y: r.y + h + kerf, w: r.w, h: r.h - h - kerf };
+  if (right.w > 0.01 && right.h > 0.01) s.rects.push(right); if (down.w > 0.01 && down.h > 0.01) s.rects.push(down);
+}
+function cutterInit() {
+  const sync = () => { cut.L = parseIn($('#cL').value) || 96; cut.W = parseIn($('#cW').value) || 48; cut.kerf = Math.max(0, parseIn($('#cK').value) || 0); cutterCalc(); };
+  document.querySelectorAll('input[name=mt]').forEach((r) => (r.onchange = () => { cut.mode = r.value; if (r.value === 'board') { cut.L = 96; cut.W = 3.5; } else { cut.L = 96; cut.W = 48; } render(); }));
+  ['cL', 'cW', 'cK'].forEach((id) => ($('#' + id).oninput = sync));
+  $('#p48').onclick = () => { cut.mode = 'sheet'; cut.L = 96; cut.W = 48; render(); };
+  $('#p44').onclick = () => { cut.mode = 'sheet'; cut.L = 48; cut.W = 48; render(); };
+  $('#pb8').onclick = () => { cut.mode = 'board'; cut.L = 96; cut.W = 3.5; render(); };
+  $('#pb10').onclick = () => { cut.mode = 'board'; cut.L = 120; cut.W = 3.5; render(); };
+  $('#addP').onclick = () => {
+    const name = $('#pN').value.trim(), l = parseIn($('#pL').value), w = cut.mode === 'board' ? cut.W : parseIn($('#pW').value), q = parseInt($('#pQ').value);
+    if (!name || !(l > 0) || !(w > 0) || !(q > 0)) return;
+    cut.parts.push({ id: Math.random().toString(36).slice(2), name, l, w, qty: q }); store.set('cut-parts', cut.parts);
+    $('#pN').value = ''; $('#pL').value = ''; $('#pW').value = ''; $('#pQ').value = 1; cutterCalc();
+  };
+  cutterCalc();
+}
+function cutterCalc() {
+  $('#parts').innerHTML = cut.parts.length ? cut.parts.map((p) => `<div class="part"><span style="flex:1;font-weight:500">${esc(p.name)}</span><span style="color:#7a7066;font-size:12px;margin-right:10px">${fmt(p.l)} × ${fmt(p.w)} (×${p.qty})</span><button onclick="delPart('${p.id}')" title="Remove">🗑</button></div>`).join('') : '<p style="color:#a39a8c;font-style:italic;font-size:14px;margin:0">No parts added yet.</p>';
+  const out = $('#cOut'); if (!cut.parts.length) return (out.innerHTML = '');
+  const { sheets, unfit } = pack(cut.parts, cut.L, cut.mode === 'board' ? cut.W : cut.W, cut.kerf, cut.mode);
+  const total = sheets.length * cut.L * cut.W, used = sheets.reduce((a, s) => a + s.placed.reduce((b, p) => b + p.w * p.h, 0), 0);
+  const perc = total ? (used / total) * 100 : 0, scrapArea = sheets.reduce((a, s) => a + s.free.reduce((b, r) => b + r.w * r.h, 0), 0);
+  const unit = cut.mode === 'board' ? 'board' : 'sheet';
+  let h = '';
+  if (unfit.length) h += `<div class="alert red"><b>Heads up:</b> ${unfit.length} piece(s) are larger than your ${unit} (${fmt(cut.L)}${cut.mode === 'sheet' ? ' × ' + fmt(cut.W) : ''}). Split the piece or use a bigger ${unit}: <i>${[...new Set(unfit.map((u) => esc(u.name)))].join(', ')}</i>.</div>`;
+  if (sheets.length > 1) h += `<div class="alert orange"><b>You'll need ${sheets.length} ${unit}s</b> to complete all the cuts. The diagrams below show each one.</div>`;
+  h += `<div class="stats"><div><small>Yield</small><b style="color:${perc > 85 ? 'var(--secondary)' : perc >= 60 ? '#e08a1e' : 'var(--alert)'}">${perc.toFixed(1)}%</b></div><div><small>${unit}s needed</small><b>${sheets.length}</b></div><div style="text-align:right"><small>Usable leftovers</small><b style="font-size:17px;color:var(--secondary)">${(scrapArea / 144).toFixed(2)} sq ft</b></div></div>`;
+  h += sheets.map((s, si) => svgSheet(s, si)).join('');
+  h += `<div class="cap">Hatched empty areas (leftovers over 8″) are usable scraps — save them for the Add-Ons gallery!</div>`;
+  h += `<div class="box" style="margin-top:16px"><h3>Cutting order</h3><ol class="steps">${sheets.map((s, si) => s.placed.map((p, i) => `<li>${sheets.length > 1 ? `<b>${unit} ${si + 1}:</b> ` : ''}<b>${esc(p.name)}</b> — cut ${fmt(p.w)} × ${fmt(p.h)} at ${fmt(p.x)} from the left${cut.mode === 'sheet' ? ' and ' + fmt(p.y) + ' from the top' : ''}${p.rot ? ' <i>(rotated 90°)</i>' : ''}</li>`).join('')).join('')}</ol></div>`;
+  out.innerHTML = h;
+}
+function svgSheet(s, si) {
+  const L = cut.L, W = cut.W, pad = Math.max(L, W) * 0.01;
+  const fs = (w, h) => Math.max(2, Math.min(w, h, 14) * 0.3);
+  return `<div class="svgwrap"><div style="font-size:12px;font-weight:600;color:#7a7066;margin-bottom:4px">${cut.mode === 'board' ? 'Board' : 'Sheet'} ${si + 1} — ${fmt(L)}${cut.mode === 'sheet' ? ' × ' + fmt(W) : ''}</div>
+  <svg viewBox="0 0 ${L} ${W}" style="width:100%;max-height:${cut.mode === 'board' ? 110 : 300}px;background:#fce5cd;border:2px solid #b25e16;border-radius:3px"><defs><pattern id="h${si}" width="3" height="3" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="3" stroke="#9ca3af" stroke-width=".5"/></pattern></defs>
+  ${s.free.map((r) => `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="url(#h${si})" opacity=".6"/>`).join('')}
+  ${s.placed.map((p) => `<g><rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" fill="#ffe4b5" stroke="#8b4513" stroke-width=".25"/>${p.w > 5 && p.h > 2.4 ? `<text x="${p.x + p.w / 2}" y="${p.y + p.h / 2}" text-anchor="middle" dominant-baseline="middle" font-size="${fs(p.w, p.h)}" fill="#5c3a21" font-weight="700">${esc(p.name)}</text>${p.h > 6 ? `<text x="${p.x + p.w / 2}" y="${p.y + p.h / 2 + fs(p.w, p.h) * 1.1}" text-anchor="middle" dominant-baseline="middle" font-size="${fs(p.w, p.h) * 0.7}" fill="#8b4513">${fmt(p.w)} × ${fmt(p.h)}</text>` : ''}` : ''}</g>`).join('')}</svg></div>`;
+}
+function delPart(id) { cut.parts = cut.parts.filter((p) => p.id !== id); store.set('cut-parts', cut.parts); cutterCalc(); }
+
+/* ============================================================
+   MODULE 2 — UNEVEN GROUND CALCULATOR (feet)
+   ============================================================ */
+const gr = store.get('ground', { L: 6, W: 4, drop: 6 });
+function groundShell() {
+  return `<div class="card"><h2 class="heading" style="font-size:28px;margin-bottom:4px">Uneven Ground Calculator</h2>
+  <p style="color:#5c5349;margin:0 0 22px">Level foundation on any slope: concrete deck blocks on a gravel pad, with skids (runners) on top.</p>
+  <div class="two"><div>
+   <div class="box"><h3><span class="num">1</span> Your playhouse footprint</h3>
+    <div class="row c3"><div><label class="l">Length (ft)</label><input id="gL" value="${gr.L}"></div><div><label class="l">Width (ft)</label><input id="gW" value="${gr.W}"></div><div><label class="l">Ground drop (in)</label><input id="gD" value="${gr.drop}"></div></div>
+    <p class="note" style="margin-bottom:0">Ground drop = how many inches lower the low corner is compared to the high corner, measured with a string line and a level.</p></div>
+   <div class="box"><h3><span class="num">2</span> How to do it</h3><ol class="steps">
+    <li>Mark the support points using string and stakes.</li><li>Dig shallow holes (4″ deep), add 2–4″ of compactable gravel and tamp it hard.</li><li>Set the first block at the <b>highest</b> point of the ground.</li><li>Transfer that level to the other blocks with a water level or a long straight board and level, shimming with wood shims or extra blocks.</li><li>Place the skids (4×4 ground-contact runners) on the blocks and fasten them.</li></ol></div>
+  </div><div id="gOut"></div></div></div>`;
+}
+function groundInit() { ['gL', 'gW', 'gD'].forEach((id) => ($('#' + id).oninput = groundCalc)); groundCalc(); }
+function groundCalc() {
+  gr.L = parseFloat($('#gL').value) || 0; gr.W = parseFloat($('#gW').value) || 0; gr.drop = parseFloat($('#gD').value) || 0; store.set('ground', gr);
+  if (gr.L <= 0 || gr.W <= 0) return ($('#gOut').innerHTML = '');
+  const skids = Math.max(2, Math.ceil(gr.W / 4) + 1), pts = Math.max(2, Math.ceil(gr.L / 5) + 1), blocks = skids * pts, gravel = blocks * 25, bags = Math.ceil(gravel / 40), skidFt = skids * gr.L;
+  const heights = Array.from({ length: pts }, (_, i) => (i / (pts - 1)) * gr.drop);
+  const svgW = 400; const pillars = heights.map((hh, i) => { const x = 20 + i * (360 / (pts - 1)), y = 60 + 80 * (i / (pts - 1)); return `<rect x="${x - 15}" y="55" width="30" height="${y - 55 + 12}" fill="#d9cdb7" stroke="#8b7a5a"/><text x="${x}" y="${y + 30}" text-anchor="middle" font-size="9" fill="#555">#${i + 1}</text>${i > 0 ? `<text x="${x}" y="48" text-anchor="middle" font-size="9" fill="#b25e16" font-weight="700">+${hh.toFixed(1)}″</text>` : ''}`; }).join('');
+  $('#gOut').innerHTML = `<div class="box"><h3>🛒 Shopping list</h3><div class="shop">
+   <div><span>Concrete deck blocks</span><b>${blocks}</b></div><div><span>Compactable gravel (≈25 lb per block)</span><b>${gravel} lb ≈ ${bags} bags (40 lb)</b></div><div><span>Skids / runners (4×4 ground-contact)</span><b>${skids} × ${gr.L} ft = ${skidFt} linear ft</b></div><div><span>Layout</span><b>${skids} skids × ${pts} support points</b></div></div></div>
+   <div class="box"><h3>Side view — extra height to add at each support point</h3><svg viewBox="0 0 ${svgW} 190" style="width:100%"><rect width="${svgW}" height="190" fill="#f6f1e6" rx="8"/><polygon points="0,${60 + 12} ${svgW},${140 + 12} ${svgW},190 0,190" fill="#c9b48a" opacity=".6"/><polyline points="20,55 380,55" stroke="#2d5a27" stroke-width="2" stroke-dasharray="5 4" fill="none"/><text x="200" y="40" text-anchor="middle" font-size="10" fill="#2d5a27" font-weight="700">Level line (top of the skids)</text>${pillars}</svg>
+   <p class="note">Numbers show how many inches taller than support #1 each block stack needs to be (add shims or extra gravel/blocks). Check with a level — the ground rarely slopes perfectly evenly.</p></div>`;
+}
+
+/* ============================================================
+   MODULES 3–5 — GUIDES WITH CHECKLIST
+   ============================================================ */
+function guide(id) {
+  const g = GUIDES[id]; return `<div class="card guide"><h2>${g.title}</h2><p class="intro">${g.intro}</p>
+  <div class="two"><div><h3 style="font-size:18px;margin-bottom:12px">Step by step</h3>${g.steps.map((s, i) => `<div class="stepitem"><span class="num">${i + 1}</span><span>${s}</span></div>`).join('')}</div>
+  <div><h3 style="font-size:18px;margin-bottom:6px">Checklist</h3><div id="gp" style="font-size:12px;color:#7a7066"></div><div class="bar"><i id="gb" style="width:0"></i></div><div id="gc"></div><button class="btn ghost" id="gr" style="margin-top:6px">Reset checklist</button></div></div></div>`;
+}
+function guideInit(id) {
+  const g = GUIDES[id], key = 'chk-' + id; let st = store.get(key, {});
+  const draw = () => {
+    $('#gc').innerHTML = g.checklist.map((c, i) => `<label class="chk ${st[i] ? 'done' : ''}"><input type="checkbox" data-i="${i}" ${st[i] ? 'checked' : ''}><span>${c}</span></label>`).join('');
+    const n = g.checklist.filter((_, i) => st[i]).length; $('#gp').textContent = `${n} of ${g.checklist.length} done`; $('#gb').style.width = (n / g.checklist.length) * 100 + '%';
+    document.querySelectorAll('#gc input').forEach((c) => (c.onchange = () => { st[c.dataset.i] = c.checked; store.set(key, st); draw(); }));
+  };
+  $('#gr').onclick = () => { st = {}; store.set(key, st); draw(); }; draw();
+}
+
+/* ============================================================
+   MODULE 6 — ADD-ONS GALLERY
+   ============================================================ */
+let cat = 'All';
+function gallery() {
+  return `<h2 class="heading" style="font-size:30px;margin-bottom:6px">Backyard Add-Ons Gallery</h2><p style="color:#5c5349;max-width:720px;margin:0 0 20px">Expand the fun using leftover wood! Pick a project to see the materials, the step-by-step and the essential safety checklist.</p>
+  <div class="filters" id="flt"></div><div class="grid" id="gg"></div>`;
+}
+function galleryInit() {
+  $('#flt').innerHTML = CATS.map((c) => `<button class="pill ${c === cat ? 'on' : ''}" data-c="${esc(c)}">${c}</button>`).join('');
+  document.querySelectorAll('.pill').forEach((b) => (b.onclick = () => { cat = b.dataset.c; galleryInit(); }));
+  $('#gg').innerHTML = ACC.filter((a) => cat === 'All' || a.cat === cat).map((a) => `<div class="card acc"><div class="top"><span class="tag">${a.cat}</span><span class="diff ${a.diff === 'Easy' ? 'easy' : 'med'}">${a.diff === 'Easy' ? '🟢 Easy' : '🟡 Medium'}</span></div><h3>${a.name}</h3><p>${a.desc}</p><button class="btn ghost" onclick="openAcc('${a.id}')">View project</button></div>`).join('');
+}
+function openAcc(id) {
+  const a = ACC.find((x) => x.id === id), key = 'acc-' + id; let st = store.get(key, {});
+  const draw = () => {
+    $('#sheet').innerHTML = `<header><h3 style="font-size:20px">${a.name}</h3><button class="x" onclick="closeAcc()" aria-label="Close">×</button></header><div class="in"><p style="margin:0 0 4px;color:#5c5349">${a.desc}</p>
+    <h4>Materials</h4><ul>${a.mat.map((m) => `<li>${m}</li>`).join('')}</ul><h4>Step by step</h4><ol class="steps">${a.steps.map((s) => `<li>${s}</li>`).join('')}</ol>
+    <h4>Essential safety checklist</h4>${a.chk.map((c, i) => `<label class="chk ${st[i] ? 'done' : ''}"><input type="checkbox" data-i="${i}" ${st[i] ? 'checked' : ''}><span>${c}</span></label>`).join('')}
+    <p class="note">Always supervise children, and follow your local building codes.</p></div>`;
+    document.querySelectorAll('#sheet input').forEach((c) => (c.onchange = () => { st[c.dataset.i] = c.checked; store.set(key, st); draw(); }));
+  };
+  draw(); $('#modal').classList.add('open');
+}
+function closeAcc() { $('#modal').classList.remove('open'); }
+$('#modal').onclick = (e) => { if (e.target.id === 'modal') closeAcc(); };
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAcc(); });
+
+render();
+</script>
+</body>
+</html>
