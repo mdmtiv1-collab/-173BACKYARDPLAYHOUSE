@@ -92,7 +92,7 @@ const GUIDES = {
   4: { title: 'Kid-Friendly Finish', intro: "Safety first, always! Kids run, bump and play without looking. Our mission is to make sure there is no loose point, sharp corner or place to pinch little fingers. Go through this list carefully.",
     steps: ['Hidden screws: use a 15° pocket-hole jig to hide the screw heads.', 'Round over all sharp corners and edges (radius of at least 1/8″, with a router or sander).', 'Leave a 5/8″ gap at door hinges and stops to prevent finger crushing.', 'Always use 1/8″ acrylic instead of glass in windows.', 'Structural bracing with corner brackets, protecting against strong winds.'],
     checklist: ['Drill the hidden pocket holes in the framing', 'Check that screw heads are 100% countersunk', 'Sand all edges and corners (doors, windows, furniture)', 'Set the 5/8″ gap at the door stop', 'Install 1/8″ acrylic in the windows (no glass!)', 'Remove splinters and debris from inside the playhouse', 'Fasten the bracing corner brackets at the base'] },
-  5: { title: 'Simple Workshop', intro: "You don't need a fancy woodshop to do magazine-quality work! With a handful of basic tools, a makeshift workbench and attention to square, you can work wonders. Here are Walt's tips:",
+  5: { title: 'Simple Workshop', intro: "You don't need a fancy woodshop to do magazine-quality work! With a handful of basic tools, a makeshift workbench and attention to square, you can work wonders. Here are Valdir's tips:",
     steps: ['Set up a level makeshift workbench using two sawhorses and a sacrificial sheet.', 'Make a straight-cut guide by clamping an aluminum ruler or a straight board.', 'Check for square: use the old 3-4-5 rule to guarantee perfect 90° angles.', "Set the drill/driver's clutch (torque): avoid driving through the wood or stripping the screw."],
     checklist: ['Set up a level workbench', 'Test the guide on a scrap piece before the real cut', 'Check the platform for square with the 3-4-5 rule', 'Adjust the circular-saw blade depth', "Set the drill/driver's clutch for the wood being used", 'Wear safety glasses and hearing protection'] },
 };
@@ -149,7 +149,7 @@ function render() {
   if (current === 6) return (app.innerHTML = '<button class="back" onclick="go(null)">← Back</button>' + gallery(), galleryInit());
 }
 function home() {
-  return `<div class="card hello"><h2>Hi! I'm Walt.</h2><p style="margin:0;color:#4d443a">Welcome to your bonus app! Here you have smart tools and practical guides to build safely, with zero waste and a magazine-quality finish. Pick a module below and let's get our hands dirty!</p></div>
+  return `<div class="card hello"><h2>Hi! I'm Valdir.</h2><p style="margin:0;color:#4d443a">Welcome to your bonus app! Here you have smart tools and practical guides to build safely, with zero waste and a magazine-quality finish. Pick a module below and let's get our hands dirty!</p></div>
   <div class="grid">${MODULES.map((m) => `<div class="card mod" onclick="go(${m.id})"><div class="ico">${m.icon}</div><span class="tag">${m.tag}</span><h3>${m.title}</h3><p>${m.desc}</p><span class="go">Open module →</span></div>`).join('')}</div>
   <p class="note" style="text-align:center;margin-top:28px">All measurements are in inches and feet, based on standard US lumber (2×4, 4×8 ft plywood).</p>`;
 }
