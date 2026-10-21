@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>173+ Backyard Playhouse Plans</title>
+    <meta name="description" content="173+ backyard playhouse, fort and play-set plans with 3D step-by-step guides, exact measurements in inches and feet, and a zero-waste cutting plan." />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+      .marquee-track { animation: marquee 40s linear infinite; }
+      .marquee-track.slow { animation-duration: 50s; }
+      .marquee-track:hover { animation-play-state: paused; }
+      .bob { animation: bob 1.5s ease-in-out infinite; }
+      html { scroll-behavior: smooth; }
+      body { overflow-x: hidden; }
+      .faq-body { display: none; }
+      .faq-open .faq-body { display: block; }
+      .faq-open .faq-chevron { transform: rotate(180deg); }
+      #popup { display: none; }
+      #popup.open { display: flex; }
+    </style>
+    <!-- TODO: add the Meta Pixel / UTMify / Clarity for the NEW English offer here (do not reuse the Brazilian pixel IDs). -->
+  </head>
+  <body>
+    <main class="min-h-screen bg-white font-sans text-text antialiased selection:bg-primary selection:text-white" id="app"></main>
+
+    <script>
+      /* ============================================================
+         CONFIG — everything you need to change lives here
+         ============================================================ */
+      const CONFIG = {
+        // Checkout links (USD products). Replace "#" with the real URLs.
+        checkout: {
+          essential: "#", // $17  Essential Plans
+          complete: "#",  // $37  Complete Package + Bonuses
+          downsell: "#",  // $27  Complete Package (exit pop-up offer)
+        },
+        // Prices (display only)
+        price: {
+          essential: "$17", essentialWas: "$47",
+          complete: "$37", completeWas: "$118", completeSave: "$81",
+          downsell: "$27",
+        },
+        // Images — still the Brazilian ones. Replace with the English versions.
+        images: {
+          hero: "img/hero.webp",
+          author: "https://i.imgur.com/00civEn.jpeg",
+          guarantee: "https://i.imgur.com/CxVCap0.jpeg",
+          testimonials: [
+            "https://i.imgur.com/hiKLIc5.png",
+            "https://i.imgur.com/sMxrH4h.png",
+            "https://i.imgur.com/BjYZnWI.png",
+            "https://i.imgur.com/OVwTlTt.png",
+            "https://i.imgur.com/bTENt3S.png",
+          ],
+          gallery: [
+            "https://i.imgur.com/J9ncmwM.jpeg",
+            "https://i.imgur.com/4KT1I5Z.jpeg",
+            "https://i.imgur.com/RFyUzsQ.jpeg",
+            "https://i.imgur.com/UKcCqzh.jpeg",
+            "https://i.imgur.com/mfPxdQJ.jpeg",
+            "https://i.imgur.com/xOOQV0f.jpeg",
+            "https://i.imgur.com/HNNgjRM.jpeg",
+            "https://i.imgur.com/exLBJiV.jpeg",
+            "https://i.imgur.com/gAARCHP.jpeg",
+            "https://i.imgur.com/yMsuPE5.jpeg",
+          ],
+          bonus: [
+            "https://i.imgur.com/scm8osK.jpeg",
+            "https://i.imgur.com/uBEfZgD.jpeg",
+            "https://i.imgur.com/ZPB7ObQ.jpeg",
+            "https://i.imgur.com/C3Ce7sh.jpeg",
+            "https://i.imgur.com/fSlsnIl.jpeg",
+            "https://i.imgur.com/B5PDlF3.jpeg",
+          ],
+        },
+      };
+
+      /* ============================================================
+         COPY
+         ============================================================ */
+      const P = CONFIG.price;
+      const IMG = CONFIG.images;
+
+      const galleryCaptions = [
+        "The Ultimate Backyard Playhouse Catalog",
+        "Exact Measurements; Zero Math",
+        "173+ Projects: Playhouses, Forts & Add-Ons",
+        "Smart Cutting Plan; Zero Waste",
+        "Hidden Screws; Kid-Friendly Finish",
+        "Perfect for First-Time Builders",
+        "3D Drawings; Visual Step-by-Step",
+        "Built to Handle Sun & Rain",
+        "Your Weekend Therapy",
+        "A Childhood Legacy, Unlocked Today",
+      ];
+
+      const bonuses = [
+        { title: "Backyard Add-Ons", desc: "Extra swing, slide and sandbox plans to complete the backyard", value: "$27", discount: "88" },
+        { title: "Weather Shield", desc: "The secret to treating budget lumber so it stands up to sun and rain without rotting", value: "$19", discount: "91" },
+        { title: "Kid-Friendly Finish", desc: "The practical hidden-screw drilling method that keeps screw heads out of little hands", value: "$17", discount: "85" },
+        { title: "Zero Waste Cutting Plan", desc: "The smart cutting plan to use every board without wasting expensive lumber", value: "$19", discount: "90" },
+        { title: "Simple Workshop", desc: "How to make every mark and cut without any professional machinery", value: "$17", discount: "87" },
+        { title: "Uneven Ground", desc: "The secret to leveling the soil and laying the perfect foundation in any kind of backyard", value: "$19", discount: "93" },
+      ];
+
+      const faqs = [
+        { q: "How will I receive the plans? Do I need a special printer?",
+          a: "You get everything as PDF files by email right after purchase. The best part: you can open and read every plan right on your phone screen, no computer needed in the workshop! When it's time to cut the lumber, just follow the measurements on your screen or print the step-by-step on any regular home or print-shop printer." },
+        { q: "Do the plans come with exact measurements, or do I have to calculate?",
+          a: "Exact measurements, fully calculated, in inches and feet. You don't have to do any math or work out tricky angles, because each plan lists the exact size of every piece of lumber and is based on standard US lumber sizes (2x4, 2x6, 4x8 plywood sheets and so on). The Zero Waste Cutting Plan bonus even shows you how to lay out every cut to save material." },
+        { q: "I've never built anything out of wood. Is this for me?",
+          a: "Yes! The catalog was designed for parents, grandparents and hobbyists who want to enjoy the therapy of woodworking for the first time. Every project comes with extremely visual, detailed 3D step-by-step drawings, making the build about as simple as putting together a block set." },
+        { q: "Do I need expensive professional power tools?",
+          a: "Not at all. You can build any of the structures with basic tools: a circular saw (or a handsaw), a drill and a standard cordless drill/driver. In the Simple Workshop guide you'll see exactly how to make every mark and cut without any industrial machinery." },
+        { q: "Will I spend a lot of money on lumber?",
+          a: "No. The structures are planned to be budget-friendly, using lumber you can find at any home improvement store: standard dimensional lumber such as pressure-treated pine and SPF 2x4s and 2x6s, plus plywood sheets. And with the Zero Waste Cutting Plan you buy only the boards you'll actually use, with close to zero waste." },
+        { q: "Are the structures really safe for kids to play on?",
+          a: "Safety was our top priority when designing the plans. The projects use reinforced joinery, and the Kid-Friendly Finish bonus teaches the hidden pocket-hole screw technique so screw heads aren't exposed, along with sanding tips to help avoid splinters. As with any DIY build, adult supervision, proper tools and following your local building codes are the builder's responsibility." },
+        { q: "How do I make sure the playhouse won't rot in the sun and rain in my yard?",
+          a: "Every structure was designed to stand up to outdoor weather. In the Weather Shield bonus you'll learn the exact step-by-step to waterproof, seal and treat budget lumber in a simple, quick way, so your gift lasts for many years in the backyard." },
+        { q: "Why is the full catalog so affordable? Is it legit?",
+          a: "Yes, access is completely secure and unlocked instantly. We charge this special introductory price so you can experience the precision of the material and lose the fear of getting started, knowing you'll probably want to build more projects from the catalog afterwards." },
+        { q: `What's the difference between the ${P.essential} offer and the ${P.complete} offer?`,
+          a: `With the ${P.essential} Essential Plans you get all 173+ playhouse, fort and backyard-structure plans. With the ${P.complete} Complete Package you get all 173+ plans plus the 6 bonuses: Backyard Add-Ons, Weather Shield, Kid-Friendly Finish, Zero Waste Cutting Plan, Simple Workshop and Uneven Ground.` },
+      ];
+
+      /* ============================================================
+         ICONS (lucide)
+         ============================================================ */
+      const svg = (paths, cls = "", size = 24) =>
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}" aria-hidden="true">${paths}</svg>`;
+      const icoCheck = (cls) => svg('<path d="M20 6 9 17l-5-5"/>', cls);
+      const icoChevron = (cls, size) => svg('<path d="m6 9 6 6 6-6"/>', cls, size);
+      const icoShield = (cls) => svg('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>', cls);
+      const icoX = (cls) => svg('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>', cls, 20);
+
+      /* ============================================================
+         BUTTONS
+         ============================================================ */
+      const btnBase = "inline-flex items-center justify-center text-center rounded-lg font-bold transition-all focus:outline-none active:scale-95 hover:scale-[1.02]";
+      const btnVariant = {
+        primary: "bg-primary text-white hover:bg-primary-hover shadow-lg hover:shadow-xl",
+        outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white",
+        ghost: "text-gray-600 hover:bg-gray-100",
+      };
+      const btnSize = {
+        default: "h-12 px-6 text-base",
+        lg: "h-12 md:h-14 px-6 md:px-8 text-sm md:text-lg",
+        xl: "h-12 md:h-16 px-6 md:px-10 text-sm md:text-xl w-full sm:w-auto",
+      };
+      const withUtm = (url) => {
+        if (!url || url === "#") return url;
+        const qs = window.location.search.substring(1);
+        if (!qs) return url;
+        return url.includes("?") ? `${url}&${qs}` : `${url}?${qs}`;
+      };
+      const btn = ({ label, variant = "primary", size = "default", cls = "", action = "scroll", href = "", id = "", pulse = false }) =>
+        `<a ${id ? `id="${id}"` : ""} data-action="${action}" data-href="${href}" href="${action === "link" ? href : "#oferta"}" class="${btnBase} ${btnVariant[variant]} ${btnSize[size]} ${pulse ? "animate-pulse glow-effect" : ""} ${cls}">${label}</a>`;
+
+      /* ============================================================
+         SECTIONS
+         ============================================================ */
+      const hero = `
+        <section class="relative w-full bg-base overflow-hidden pt-5 pb-16 sm:pt-10 sm:pb-24 px-6 sm:px-6 lg:px-8 selection:bg-primary selection:text-white">
+          <div class="absolute inset-0 bg-base opacity-50"></div>
+          <div class="relative max-w-4xl mx-auto flex flex-col items-center text-center z-10">
+            <div class="inline-flex items-center rounded-full bg-red-600/10 px-3 py-1 text-sm font-semibold text-red-600 mb-4">
+              <span class="flex h-2 w-2 rounded-full bg-red-600 mr-2 animate-pulse"></span>SPECIAL LAUNCH PRICE
+            </div>
+            <h1 class="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-text mb-4 leading-tight px-3 mx-auto">
+              <span class="text-primary relative inline">173+ BACKYARD PLAYHOUSE PLANS</span> TO BUILD <span class="text-primary relative inline">THEIR BIGGEST CHILDHOOD MEMORY</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-black font-medium mb-4 px-3 max-w-xl mx-auto">The 3D step-by-step to build the right structure with common garage tools and zero lumber waste.</p>
+            <a href="#oferta" class="mb-4 flex justify-center cursor-pointer" aria-label="Scroll to offer"><span class="text-primary bob">${icoChevron("", 22)}</span></a>
+            <div class="w-full max-w-2xl mx-auto mb-8">
+              <img src="${IMG.hero}" alt="173+ DIY backyard playhouse plans shown on a tablet with printed blueprints" width="1200" height="900" class="w-full rounded-xl shadow-2xl" loading="eager" fetchpriority="high" />
+            </div>
+            <p class="max-w-2xl text-sm sm:text-base md:text-lg text-gray-700 font-medium mb-5 leading-relaxed px-2">
+              Valdir's 3D step-by-step plans to build the structure right with common garage tools and zero lumber waste.
+            </p>
+            <div class="w-full flex justify-center">${btn({ label: "SEE THE PLANS NOW", size: "xl", cls: "w-full sm:w-auto shadow-primary/25" })}</div>
+          </div>
+        </section>`;
+
+      const galleryCards = [...IMG.gallery, ...IMG.gallery].map((img, i) => `
+        <div class="relative flex-none w-[260px] md:w-[300px] flex flex-col rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-white hover:-translate-y-1 transition-transform">
+          <div class="aspect-[3/4] w-full bg-gray-100 overflow-hidden"><img src="${img}" alt="${galleryCaptions[i % galleryCaptions.length]}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" /></div>
+          <div class="p-4 bg-white flex-1 flex items-center justify-center border-t border-gray-100 h-[80px]"><p class="text-sm md:text-base font-semibold text-text text-center whitespace-normal leading-tight">${galleryCaptions[i % galleryCaptions.length]}</p></div>
+        </div>`).join("");
+
+      const gallery = `
+        <section class="w-full bg-white py-8 md:py-20 overflow-hidden">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-16">
+            <h2 class="text-lg md:text-4xl font-extrabold text-text mb-4">What You'll Get</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
+          </div>
+          <div class="relative w-full flex overflow-x-hidden group"><div class="marquee-track flex whitespace-nowrap gap-6 px-3">${galleryCards}</div></div>
+          <div class="max-w-4xl mx-auto flex flex-col items-center text-center mt-16 px-4">${btn({ label: "SEE THE FULL OFFER", size: "xl", cls: "w-full sm:w-auto shadow-xl", href: "#oferta-completa" })}</div>
+        </section>`;
+
+      const bonusCards = bonuses.map((b, i) => `
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col relative">
+          <div class="absolute top-1.5 left-1.5 md:top-3 md:left-3 flex items-center z-10">
+            <span class="bg-white/95 text-gray-400 text-[8px] md:text-[10px] font-semibold line-through px-1.5 py-0.5 rounded-l-full shadow-sm">${b.value}</span>
+            <span class="bg-primary text-white text-[8px] md:text-[10px] font-extrabold px-1.5 py-0.5 rounded-r-full shadow-sm">-${b.discount}%</span>
+          </div>
+          <div class="aspect-square w-full bg-gray-100 relative group overflow-hidden"><img src="${IMG.bonus[i]}" alt="${b.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" /></div>
+          <div class="px-1.5 py-1.5 md:p-6 flex-1 flex flex-col text-center md:text-left">
+            <h3 class="font-black text-[10px] md:text-xl text-text leading-tight mb-0.5 md:mb-2">${b.title}</h3>
+            <p class="text-gray-600 text-[9px] md:text-sm leading-tight md:leading-relaxed flex-1">${b.desc}</p>
+          </div>
+        </div>`).join("");
+
+      const bonusSection = `
+        <section class="w-full bg-base py-8 md:py-20 px-4 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8 md:mb-16">
+              <div class="inline-flex items-center gap-2 bg-primary/10 text-primary font-bold px-4 py-2 rounded-full text-sm mb-4">EXCLUSIVE TO THE COMPLETE PACKAGE</div>
+              <h2 class="text-3xl md:text-5xl font-extrabold text-text mb-4">🎁 Included Bonuses</h2>
+              <div class="w-24 h-1.5 bg-primary mx-auto rounded-full mt-6"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 md:gap-6">${bonusCards}</div>
+            <div class="mt-16 text-center">
+              <div class="inline-block bg-white px-8 py-4 rounded-xl shadow-md border border-gray-100">
+                <p class="text-lg font-bold text-text">💚 Total bonus value: <span class="line-through text-gray-400">${P.completeWas}</span></p>
+                <p class="text-base md:text-lg font-extrabold text-primary mt-1">INCLUDED WITH THE COMPLETE PACKAGE</p>
+              </div>
+            </div>
+          </div>
+        </section>`;
+
+      const li = (text, cls = "text-primary") => `
+        <li class="flex items-start">${icoCheck(`h-5 w-5 ${cls} shrink-0 mr-3 mt-0.5`)}<span class="text-sm text-gray-700">${text}</span></li>`;
+
+      const completeItems = [
+        "173+ Backyard Playhouse, Fort & Add-On Plans in PDF",
+        "Exact measurements in inches & feet, based on standard US lumber",
+        ...bonuses.map((b) => `🎁 BONUS: ${b.title}`),
+        "Instant access after payment",
+        "🛡️ 7-Day Money-Back Guarantee",
+      ].map((t) => `<div class="flex items-center gap-2">${icoCheck("w-4 h-4 text-secondary shrink-0")}<span class="text-[13px] sm:text-sm font-medium text-text leading-snug">${t}</span></div>`).join("");
+
+      const offer = `
+        <section id="oferta" class="w-full bg-white py-8 md:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-10">
+          <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8 md:mb-16">
+              <h2 class="text-lg md:text-5xl font-extrabold text-text mb-6">🔥 Get Instant Access Now</h2>
+              <div class="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch lg:items-end">
+              <div class="flex flex-col bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="p-8 flex-1 flex flex-col">
+                  <h3 class="text-base md:text-xl font-bold text-gray-800 mb-2">Essential Plans</h3>
+                  <p class="text-sm text-gray-500 mb-6">One-time payment</p>
+                  <div class="mb-6 flex items-baseline gap-2">
+                    <span class="text-sm md:text-lg text-gray-400 line-through font-medium">${P.essentialWas}</span>
+                    <span class="text-2xl md:text-4xl font-extrabold text-text">${P.essential}</span>
+                  </div>
+                  <ul class="space-y-4 mb-8 flex-1">
+                    ${li("173+ Backyard Playhouses, Forts & Structures in PDF")}
+                    ${li("Exact measurements in inches & feet, ready to cut and build")}
+                    ${li("Instant access after payment")}
+                  </ul>
+                  <div class="flex items-center text-sm font-medium text-gray-600 mb-6 bg-gray-50 p-3 rounded-lg">${icoShield("h-5 w-5 text-gray-500 mr-2")}7-Day Money-Back Guarantee</div>
+                  ${btn({ label: "SEE THE ESSENTIAL PLANS", variant: "outline", size: "lg", cls: "w-full text-sm mt-auto", action: "popup" })}
+                </div>
+              </div>
+              <div id="oferta-completa" class="rounded-2xl bg-white shadow-sm border-4 border-secondary relative overflow-hidden text-center shadow-[0_0_40px_rgba(45,90,39,0.4)] scroll-mt-20">
+                <div class="absolute top-0 right-0 bg-secondary text-white px-3 py-1 text-xs font-bold rounded-bl-lg z-10">⭐ MOST POPULAR</div>
+                <div class="p-5 sm:p-8 pt-10">
+                  <h3 class="text-xl sm:text-2xl font-black mb-2 text-secondary">Complete Package + Bonuses</h3>
+                  <div class="mb-3">
+                    <div class="text-gray-400 line-through text-sm">${P.completeWas}</div>
+                    <span class="text-4xl sm:text-5xl font-black text-secondary">${P.complete}</span>
+                    <p class="text-xs text-gray-500 mt-1">One-time payment</p>
+                    <p class="text-xs font-bold mt-1.5 text-secondary bg-secondary/10 inline-block px-2 py-1 rounded">You save ${P.completeSave} in bonuses</p>
+                  </div>
+                  <div class="space-y-1.5 mb-4 text-left">${completeItems}</div>
+                  ${btn({ label: "I WANT THE COMPLETE PACKAGE", size: "xl", pulse: true, cls: "w-full text-sm sm:text-base", action: "link", href: CONFIG.checkout.complete, id: "buy-complete" })}
+                  <p class="text-center text-xs text-gray-500 mt-3 leading-tight">Join the families already building unforgettable memories in their own backyard</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>`;
+
+      const popup = `
+        <div id="popup" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4" role="dialog" aria-modal="true">
+          <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl max-h-[90vh] overflow-y-auto" id="popup-card">
+            <button id="popup-close" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" aria-label="Close">${icoX("")}</button>
+            <div class="text-center mb-4"><span class="text-4xl">🎁</span></div>
+            <h3 class="text-lg sm:text-xl font-black text-center text-text mb-3 leading-tight">Wait! You're leaving 6 bonuses behind.</h3>
+            <p class="text-sm text-gray-600 text-center mb-5 leading-relaxed">The Essential Plans are a great place to start. But the Complete Package has all of this for a small difference:</p>
+            <div class="space-y-2 mb-5">${bonuses.map((b) => `<div class="flex items-center gap-2">${icoCheck("w-4 h-4 text-primary shrink-0")}<span class="text-sm text-text">${b.title}</span></div>`).join("")}</div>
+            <div class="bg-secondary/10 rounded-xl p-4 text-center mb-4">
+              <div class="text-gray-400 line-through text-sm">Was ${P.complete}</div>
+              <div class="text-2xl font-black text-secondary">Now ${P.downsell}</div>
+            </div>
+            ${btn({ label: `YES! I WANT THE COMPLETE PACKAGE FOR ${P.downsell}`, size: "lg", cls: "w-full mb-3", action: "link", href: CONFIG.checkout.downsell })}
+            ${btn({ label: `No thanks, I'll continue with just the Essential Plans for ${P.essential}`, variant: "ghost", cls: "w-full text-xs sm:text-sm text-gray-600 hover:text-gray-800 bg-white hover:bg-orange-50 mt-2 border border-orange-400 hover:border-orange-500 shadow-sm h-auto py-3", action: "link", href: CONFIG.checkout.essential })}
+          </div>
+        </div>`;
+
+      const testimonialCards = [...IMG.testimonials, ...IMG.testimonials].map((src) => `
+        <div class="relative flex-none w-[280px] md:w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-white hover:-translate-y-1 transition-transform">
+          <img src="${src}" alt="Customer testimonial" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/720x1280/e2e8f0/64748b?text=Testimonial'" />
+        </div>`).join("");
+
+      const testimonials = `
+        <section class="w-full bg-base-dark py-8 md:py-20 overflow-hidden">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-16">
+            <h2 class="text-lg md:text-4xl font-extrabold text-text mb-4">Families Already Building</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
+          </div>
+          <div class="relative w-full flex overflow-hidden group">
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-base-dark to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-base-dark to-transparent z-10"></div>
+            <div class="marquee-track slow flex whitespace-nowrap gap-6 px-4">${testimonialCards}</div>
+          </div>
+        </section>`;
+
+      const stat = (n, l) => `<div class="bg-base p-4 rounded-xl text-center shadow-sm"><div class="text-base md:text-2xl font-extrabold text-text mb-1">${n}</div><div class="text-xs font-semibold text-gray-500 uppercase tracking-wide">${l}</div></div>`;
+
+      const author = `
+        <section class="w-full bg-white py-8 md:py-20 px-4 sm:px-6 lg:px-8">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-full border-4 border-primary p-2 overflow-hidden bg-base">
+              <img src="${IMG.author}" alt="Valdir" class="w-full h-full object-cover rounded-full" loading="lazy" />
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <h2 class="text-lg md:text-4xl font-extrabold text-text mb-2">Valdir</h2>
+              <p class="text-primary font-bold mb-6">Garage Woodworker &amp; Proud Grandpa; Specialist in Building Childhood Memories Out of Wood</p>
+              <p class="text-sm md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8 italic">"I've always seen woodworking as weekend therapy to clear my mind. But everything changed when I built the first wooden cabin in the backyard for my grandkids, using only simple hand tools. Seeing the sparkle in their eyes, and knowing I had built the scene for their best childhood memories, was my greatest pride. I spent years simplifying projects, getting rid of the hard math and testing how to weatherproof the playhouses against the rain. I put all of that visual, no-fuss step-by-step into this material. My mission now is to help you build that lasting legacy for your family, stress-free, in your own backyard."</p>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                ${stat("12+", "Years in the Garage")}${stat("5,000+", "Families Guided")}${stat("Simple", "Common Tools")}${stat("Weatherproof", "Sun &amp; Rain")}
+              </div>
+              <div>${btn({ label: "SEE HOW TO GET STARTED", size: "lg", cls: "w-full md:w-auto shadow-lg" })}</div>
+            </div>
+          </div>
+        </section>`;
+
+      const faqItems = faqs.map((f, i) => `
+        <div class="faq-item ${i === 0 ? "faq-open" : ""} border border-gray-200 rounded-xl mb-4 bg-white overflow-hidden shadow-sm">
+          <button type="button" class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none focus:bg-gray-50 hover:bg-gray-50 transition-colors">
+            <span class="font-bold text-gray-800 pr-4">${f.q}</span>
+            ${icoChevron("faq-chevron text-gray-400 transition-transform duration-300 min-w-[20px]", 20)}
+          </button>
+          <div class="faq-body"><div class="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-50">${f.a}</div></div>
+        </div>`).join("");
+
+      const faq = `
+        <section class="w-full bg-base py-8 md:py-20 px-4 sm:px-6 lg:px-8">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8 md:mb-16">
+              <h2 class="text-lg md:text-4xl font-extrabold text-text mb-4">Frequently Asked Questions</h2>
+              <div class="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="flex flex-col">${faqItems}</div>
+          </div>
+        </section>`;
+
+      const guarantee = `
+        <section class="w-full bg-guarantee py-8 md:py-20 px-4 sm:px-6 lg:px-8 text-white">
+          <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-full overflow-hidden shadow-2xl relative border-4 border-primary">
+              <img src="${IMG.guarantee}" alt="7-day money-back guarantee seal" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <h2 class="text-xl md:text-5xl font-extrabold mb-4 md:mb-6">7-Day Money-Back Guarantee</h2>
+              <p class="text-sm md:text-xl text-gray-300 leading-relaxed mb-6 md:mb-8">Download the plans and take a good, calm look at them at home. If you find the plans too complicated, or you don't feel confident cutting the lumber and building your first structure, email me and I'll refund 100% of your money. No questions, no hassle, no runaround. The risk is all mine.</p>
+              ${btn({ label: "BUY WITH CONFIDENCE", size: "xl", cls: "w-full md:w-auto shadow-2xl shadow-primary/20 text-guarantee" })}
+            </div>
+          </div>
+        </section>`;
+
+      const footer = `
+        <footer class="w-full bg-white py-10 px-4 border-t border-gray-100">
+          <div class="max-w-4xl mx-auto text-center flex flex-col gap-2">
+            <p class="text-sm font-medium text-gray-500">© 2026 Valdir. All rights reserved.</p>
+            <p class="text-xs text-gray-400">Digital content licensed for personal use.</p>
+            <p class="text-xs text-gray-400">These are DIY woodworking plans. Adult supervision, proper tools and safety gear, and compliance with your local building codes are the builder's responsibility. Results may vary.</p>
+          </div>
+        </footer>`;
+
+      document.getElementById("app").innerHTML = hero + gallery + bonusSection + offer + testimonials + author + faq + guarantee + footer;
+      document.body.insertAdjacentHTML("beforeend", popup);
+
+      /* ============================================================
+         BEHAVIOUR
+         ============================================================ */
+      const popupEl = document.getElementById("popup");
+      const openPopup = () => popupEl.classList.add("open");
+      const closePopup = () => popupEl.classList.remove("open");
+
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("[data-action]");
+        if (a) {
+          const action = a.dataset.action;
+          if (action === "scroll") {
+            e.preventDefault();
+            const target = a.dataset.href && a.dataset.href.startsWith("#") ? a.dataset.href : "#oferta";
+            document.querySelector(target).scrollIntoView({ behavior: "smooth", block: "start" });
+          } else if (action === "popup") {
+            e.preventDefault();
+            openPopup();
+          } else if (action === "link") {
+            e.preventDefault();
+            const url = withUtm(a.dataset.href);
+            if (url && url !== "#") window.location.href = url;
+          }
+          return;
+        }
+        const f = e.target.closest(".faq-btn");
+        if (f) {
+          const item = f.closest(".faq-item");
+          const wasOpen = item.classList.contains("faq-open");
+          document.querySelectorAll(".faq-item").forEach((i) => i.classList.remove("faq-open"));
+          if (!wasOpen) item.classList.add("faq-open");
+          return;
+        }
+        if (e.target.closest("#popup-close") || e.target === popupEl) closePopup();
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
+    </script>
+  </body>
+</html>
